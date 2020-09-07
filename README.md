@@ -27,7 +27,7 @@ During this bring-up, we use **3 EFR32xG12 boards** to create a Wi-SUN network:
 - One board acts as a **Wi-SUN Border Router**
 - Two boards act as **Wi-SUN nodes/routers**
 
-### Flash the Border Router and the Router Node
+### Flash the Border Router and the Router Nodes
 
 - Install [**Simplicity Studio 5**](https://www.silabs.com/products/development-tools/software/simplicity-studio/simplicity-studio-5) and [**Git**](https://git-scm.com/) on your machine
 - Clone the [**Wi-SUN Application GitHub repository**](https://github.com/SiliconLabs/proprietary_wi-sun_applications) using the command below:
@@ -48,11 +48,11 @@ To Flash the **Wi-SUN border router** with the border router application:
 To Flash the **Wi-SUN nodes** with Wi-SUN CLI application:
 - Right-click on an EFR32xG12 acting as Wi-SUN node in the **"Debug Adapter"** panel
 - Click on **"Upload application..."**
-- Under **"Application image path"**, browse to the cloned *proprietary_wi-sun_applications* folder and select the appropriate binary file under **wisun_cli_image/EFR32MG12_BRD41xx_wisun_cli.bin**
+- Under **"Application image path"**, browse to the cloned **proprietary_wi-sun_applications** folder and select the appropriate binary file under **wisun_cli_image/EFR32MG12_BRD41xx_wisun_cli.bin**
 - Click on **"OK"**
 - Repeat the process for the other EFR32xG12 acting as Wi-SUN node
 
-Additionally, the Wi-SUN CLI application can be built from source as explained in [**the dedicated section**](#build-the-wisun-cli-application-from-the-source-code).
+Additionally, the Wi-SUN CLI application can be built from source as explained in [**the dedicated section**](#build-the-wi-sun-cli-application-from-the-source-code).
 
 ### Connect a Terminal to the Wi-SUN CLI Application
 
@@ -68,11 +68,11 @@ Additionally, the Wi-SUN CLI application can be built from source as explained i
 ### Configure the Wi-SUN PHY
 
 Depending on the border router binary used in the section above, the Wi-SUN nodes have to be configured with a matching PHY configuration. To do so, the Wi-SUN CLI application provides three configuration APIs:
-- `w s wisun.regulatory_domain [parameter]` should macth X in the border router file name (*EFR32MG12_BRD4163-wisun-border-router-X-Y-Z.bin*)
-- `w s wisun.operating_class [parameter]` should match Y in the border router file name (*EFR32MG12_BRD4163-wisun-border-router-X-Y-Z.bin*)
-- `w s wisun.operating_mode [parameter]` should match Z in the border router file name (*EFR32MG12_BRD4163-wisun-border-router-X-Y-Z.bin*)
+- `w s wisun.regulatory_domain [parameter]` should macth X in the border router file name (EFR32MG12_BRD4163-wisun-border-router-**X**-Y-Z.bin)
+- `w s wisun.operating_class [parameter]` should match Y in the border router file name (EFR32MG12_BRD4163-wisun-border-router-X-**Y**-Z.bin)
+- `w s wisun.operating_mode [parameter]` should match Z in the border router file name (EFR32MG12_BRD4163-wisun-border-router-X-Y-**Z**.bin)
 
-You can make sure the commands have been taken into account by using the "get" command below:
+You can verify the commands have been taken into account by using the "get" commands below:
 - `w g wisun.regulatory_domain`
 - `w g wisun.operating_class`
 - `w g wisun.operating_mode`
@@ -102,7 +102,7 @@ After several hundreds of seconds (100s to 500s), a connection notification is o
 [IPv6 address: fd00:7283:7e00:0:20d:6fff:fe20:b6f9]
 ```
 
-The node has been successfully added to the Wi-SUN network.
+The node has been successfully added to the Wi-SUN network. Follow this step for each Wi-SUN node you want to add to the network.
 
 ### Ping through the Wi-SUN Network
 
@@ -116,7 +116,7 @@ To ping the **Border Router** from **Node 1**, use the command below on **Node 1
 
 `w ping [Border Router IPv6 address]`
 
-If the ping is successful, the Wi-SUN CLI output the following trace.
+If the ping is successful, the Wi-SUN CLI on **Node 1** output the following trace.
 ```
 > w ping fd00:6172:6d00:0:fd6f:d00:95bd:20fe
 PING fd00:6172:6d00:0:fd6f:d00:95bd:20fe: 40 data bytes
@@ -127,7 +127,7 @@ To ping the **Node 2** from **Node 1**, use the command below on **Node 1**.
 
 `w ping [Node 2 IPv6 address]`
 
-If the ping is successful, the Wi-SUN CLI output the following trace.
+If the ping is successful, the Wi-SUN CLI on **Node 1** output the following trace.
 ```
 > w ping fd00:7283:7e00:0:20d:6fff:fe20:b6f9
 PING fd00:7283:7e00:0:20d:6fff:fe20:b6f9: 40 data bytes
@@ -144,7 +144,7 @@ Using the same Network configuration as in the previous section:
 
 To use the TCP socket API, first on **Node 2** enter:
 
-`w tcp_server [local port]`
+`w xxx_server [local port]` where xxx is **"tcp"** or **"udp"**.
 
 For example, to use the TCP socket 80:
 ```
@@ -155,7 +155,7 @@ On **Node 2**, the **Socket ID** is **3**.
 
 On **Node 1**, enter:
 
-`w tcp_client [Node 2 IPv6 address] [local port]`
+`w tcp_client [Node 2 IPv6 address] [local port]` with "local port" matching the port previously configured on **"Node 2"**.
 ```
 > w tcp_client fd00:7283:7e00:0:20d:6fff:fe20:b6f9 80
 [Opening: fd00:7283:7e00:0:20d:6fff:fe20:b6f9 (80): 3]
@@ -177,7 +177,7 @@ On **Node 1**, enter:
 [Wrote 12 bytes]
 > [Data sent: 3,2048]
 ```
-On **Node 2**, the 12 bytes are received on the socket.
+On **Node 2**, the 12 bytes are successfully received on the socket.
 ```
 > [Data from fd00:7283:7e00:0:20d:6fff:fe20:bd45 (63516): 4,12]
 ```
@@ -189,8 +189,8 @@ On **Node 2**, the 12 bytes are received on the socket.
 - Install [**Simplicity Studio 5**](https://www.silabs.com/products/development-tools/software/simplicity-studio/simplicity-studio-5) and [**Git**](https://git-scm.com/) on your machine
 - Open Simplicity Studio 5
 - When prompted by the Installation Manager, select **"Install by technology type"**
-- In the **"Select Technology Type"** panel, select **"Proprietary"** and click **"Next"**
-- **"Package Installation Options"**, **"Next"**
+- In the **"Select Technology Type"** panel, select **"Proprietary"** and click on **"Next"**
+- In the **"Package Installation Options"** panel, directly click on **"Next"**
 - Accept the License Agreement
 - Simplicity Studio download the Proprietary Gecko SDK (takes several minutes)
 - When done, click **"Close"**
@@ -199,12 +199,12 @@ On **Node 2**, the 12 bytes are received on the socket.
 
 ### Retrieve and Include the Wi-SUN Stack and Applications to the Gecko SDK
 
-- Under the default path *SiliconLabs\SimplicityStudio\v5\developer\sdks\gecko_sdk_suite\v3.0\protocol* (default path), clone the [**Wi-SUN stack GitHub repository**](https://github.com/SiliconLabs/proprietary_wi-sun_stack) using the command below:
+- Under the path *SiliconLabs\SimplicityStudio\v5\developer\sdks\gecko_sdk_suite\v3.0\protocol* (default path), clone the [**Wi-SUN stack GitHub repository**](https://github.com/SiliconLabs/proprietary_wi-sun_stack) using the command below:
 
 `git clone https://github.com/SiliconLabs/proprietary_wi-sun_stack.git`
 
-The command creates a "wisun" folder containing the Wi-SUN stack and Wi-SUN CLI application.
-
+The command creates a **"proprietary_wi-sun_stack"** folder containing the Wi-SUN stack and Wi-SUN CLI application.
+- Rename the **"proprietary_wi-sun_stack"** folder to **"wisun"**
 - Under *wisun/wisun/gsdk-integration*, run *gsdk-setup.sh*
 - Restart Simplicity Studio
 
