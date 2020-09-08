@@ -68,7 +68,7 @@ Additionally, the Wi-SUN CLI application can be built from source as explained i
 ### Configure the Wi-SUN PHY
 
 Depending on the border router binary used in the section above, the Wi-SUN nodes have to be configured with a matching PHY configuration. To do so, the Wi-SUN CLI application provides three configuration APIs:
-- `w s wisun.regulatory_domain [parameter]` should macth X in the border router file name (EFR32MG12_BRD4163-wisun-border-router-**X**-Y-Z.bin)
+- `w s wisun.regulatory_domain [parameter]` should match X in the border router file name (EFR32MG12_BRD4163-wisun-border-router-**X**-Y-Z.bin)
 - `w s wisun.operating_class [parameter]` should match Y in the border router file name (EFR32MG12_BRD4163-wisun-border-router-X-**Y**-Z.bin)
 - `w s wisun.operating_mode [parameter]` should match Z in the border router file name (EFR32MG12_BRD4163-wisun-border-router-X-Y-**Z**.bin)
 
@@ -81,12 +81,12 @@ Below is a table of the currently supported Wi-SUN PHYs.
 
 | Regulatory domain | Operating class | Operating mode | Freq band start (MHz) | Freq band end (MHz) | Region | Bitrate (kbits/s) | Channel spacing (kHz) |
 |-|-|-|-|-|-|-|-|
-| 3 | 1 | 1a | 863 | 870 | Europe | 50 | 100 |
-| 3 | 2 | 2a | 863 | 870 | Europe | 100 | 200 |
-| 3 | 2 | 3 | 863 | 870 | Europe | 150 | 200 |
-| 3 | 3 | 1a | 870 | 876 | Europe | 50 | 100 |
-| 3 | 4 | 2a | 870 | 876 | Europe | 100 | 200 |
-| 3 | 4 | 3 | 870 | 876 | Europe | 150 | 200 |
+| 3 (EU) | 1 | 1a | 863 | 870 | Europe | 50 | 100 |
+| 3 (EU) | 2 | 2a | 863 | 870 | Europe | 100 | 200 |
+| 3 (EU) | 2 | 3 | 863 | 870 | Europe | 150 | 200 |
+| 3 (EU) | 3 | 1a | 870 | 876 | Europe | 50 | 100 |
+| 3 (EU) | 4 | 2a | 870 | 876 | Europe | 100 | 200 |
+| 3 (EU) | 4 | 3 | 870 | 876 | Europe | 150 | 200 |
 
 ### Connect the Nodes to the Network
 
@@ -192,7 +192,7 @@ On **Node 2**, the 12 bytes are successfully received on the socket.
 - In the **"Select Technology Type"** panel, select **"Proprietary"** and click on **"Next"**
 - In the **"Package Installation Options"** panel, directly click on **"Next"**
 - Accept the License Agreement
-- Simplicity Studio download the Proprietary Gecko SDK (takes several minutes)
+- Simplicity Studio downloads the Proprietary Gecko SDK (takes several minutes)
 - When done, click **"Close"**
 - Click **"Restart"**
 - Once Simplicity Studio is reopened, close it again
@@ -201,15 +201,14 @@ On **Node 2**, the 12 bytes are successfully received on the socket.
 
 - Under the path *SiliconLabs\SimplicityStudio\v5\developer\sdks\gecko_sdk_suite\v3.0\protocol* (default path), clone the [**Wi-SUN stack GitHub repository**](https://github.com/SiliconLabs/proprietary_wi-sun_stack) using the command below:
 
-`git clone https://github.com/SiliconLabs/proprietary_wi-sun_stack.git`
+`git clone https://github.com/SiliconLabs/proprietary_wi-sun_stack.git wisun`
 
 The command creates a **"proprietary_wi-sun_stack"** folder containing the Wi-SUN stack and Wi-SUN CLI application.
-- Rename the **"proprietary_wi-sun_stack"** folder to **"wisun"**
 - Under *wisun/wisun/gsdk-integration*, run *gsdk-setup.sh*
-- Restart Simplicity Studio
 
 ### Create a Wi-SUN CLI Application in your Workspace
 
+- Restart Simplicity Studio
 - Click on *File/New/Project...*
 - In **"Select a wizard"**, select */Simplicity Studio/Silicon Labs MCU Project*
 - Select in **"Boards"** the EFR32 radio board you want to use (e.g., BRD4170A)
