@@ -82,7 +82,7 @@ Additionally, the Wi-SUN CLI application can be built from source as explained i
 - Right-click on the EFR32xG12 acting as Wi-SUN border router in the **"Debug Adapter"** panel
 - Click on **"Launch Console..."**
 - On the newly opened console, select the **"Serial 1"** panel
-- Make sure the console is connected. Check the icon in the bottom left corner of the console panel. If its status is ![console not connected](/images/console_not_connected.png) then the serial console is not connected. Press **"Enter"** in the console, the icon should change its status to ![console connected](/images/console_connected.png).
+- Make sure the console is connected. Check the icon in the bottom left corner of the console panel. If its status is ![console not connected](/images/console_not_connected.png) then the serial console is yet not connected. Press **"Enter"** in the console, the icon should change its status to ![console connected](/images/console_connected.png).
 - Press the **"RESET"** button on the border router board
 
 If the Wi-SUN border router application has been successfully flashed and the serial connection is established, a similar trace as the one below is output.
@@ -176,7 +176,7 @@ If you prefer to use another serial terminal, the UART port settings are **11520
 - On the newly opened console, select the **"Serial 1"** panel
 - Press "Enter"
 
-If the Wi-SUN CLI application has been successfully flashed and the serial connection is established, a chevron is output indicating the CLI is ready to receive a command
+If the Wi-SUN CLI application has been successfully flashed and the serial connection is established, a chevron is output indicating the CLI is ready to receive a command:
 ```
 >
 ```
@@ -197,11 +197,11 @@ For example:
 >
 ```
 Depending on the border router binary used in the section above, the Wi-SUN nodes have to be configured with a matching PHY configuration. To do so, the Wi-SUN CLI application provides three configuration APIs:
-- `wisun set wisun.regulatory_domain [parameter]` should match X in the border router file name (EFR32MG12_BRD4163-wisun-border-router-**X**-Y-Z.bin)
-- `wisun set wisun.operating_class [parameter]` should match Y in the border router file name (EFR32MG12_BRD4163-wisun-border-router-X-**Y**-Z.bin)
-- `wisun set wisun.operating_mode [parameter]` should match **the decimal value of Z (expressed in hexadecimal in the border router name)** in the border router file name (EFR32MG12_BRD4163-wisun-border-router-X-Y-**Z**.bin). For example:
-  - if the border router name has '1a', `wisun set wisun.operating_mode 26` should be configured
-  - if the border router name has '2a', `wisun set wisun.operating_mode 42` should be configured
+- `wisun set wisun.regulatory_domain [parameter]` should match **X** in the border router file name (EFR32MG12_BRD41xx-wisun-border-router-**X**-Y-Z.bin)
+- `wisun set wisun.operating_class [parameter]` should match **Y** in the border router file name (EFR32MG12_BRD41xx-wisun-border-router-X-**Y**-Z.bin)
+- `wisun set wisun.operating_mode [parameter]` should match **the decimal value of Z expressed in hexadecimal in the border router name** (EFR32MG12_BRD41xx-wisun-border-router-X-Y-**Z**.bin). For example:
+  - if the border router Z value is '1a', `wisun set wisun.operating_mode 26` should be configured
+  - if the border router Z value is '2a', `wisun set wisun.operating_mode 42` should be configured
   - ...
 
 You can verify the commands have been taken into account by using the "get" commands below:
@@ -221,11 +221,11 @@ The current "network_name", "regulatory_domain", "operating_class", "operating_m
 
 ### Connect the Nodes to the Network
 
-Once the Wi-SUN node PHY is correctly configured, the node can be connected to the Wi-SUN border router. Enter the following command in the Wi-SUN CLI to start the connection process:
+Once the Wi-SUN node is correctly configured, it can be connected to the Wi-SUN border router. Enter the following command in the Wi-SUN CLI to start the connection process:
 
 `wisun connect`
 
-After several hundreds of seconds (100s to 500s), a connection notification is output by the Wi-SUN CLI with the IPv6 address assigned to the Wi-SUN node.
+After several hundreds of seconds (100 s to 500 s), a connection notification is output by the Wi-SUN CLI with the IPv6 address assigned to the Wi-SUN node.
 ```
 > wisun connect
 [Connecting to "Wi-SUN Network"]
@@ -244,13 +244,14 @@ Once the two boards are connected to the border router, retrieve their IP addres
 - **Node 2: [IPv6 address: fd00:7283:7e00:0:20d:6fff:fe20:b6f9]**
 
 If you want to retrieve the border router IP address, type the following command:
+
 `wisun get wisun.border_router`
 
 To ping the **Border Router** from **Node 1**, use the command below on **Node 1**.
 
 `wisun ping [Border Router IPv6 address]`
 
-If the ping is successful, the Wi-SUN CLI on **Node 1** output the following trace.
+If the ping is successful, the Wi-SUN CLI on **Node 1** outputs the following trace.
 ```
 > wisun ping fd00:6172:6d00:0:fd6f:d00:95bd:20fe
 PING fd00:6172:6d00:0:fd6f:d00:95bd:20fe: 40 data bytes
@@ -261,7 +262,7 @@ To ping the **Node 2** from **Node 1**, use the command below on **Node 1**.
 
 `wisun ping [Node 2 IPv6 address]`
 
-If the ping is successful, the Wi-SUN CLI on **Node 1** output the following trace.
+If the ping is successful, the Wi-SUN CLI on **Node 1** outputs the following trace.
 ```
 > wisun ping fd00:7283:7e00:0:20d:6fff:fe20:b6f9
 PING fd00:7283:7e00:0:20d:6fff:fe20:b6f9: 40 data bytes
@@ -291,7 +292,7 @@ On **Node 2**, the **Socket ID** is **3**.
 
 On **Node 1**, enter:
 
-`wisun tcp_client [Node 2 IPv6 address] [local port]` with "local port" matching the port previously configured on **"Node 2"**.
+`wisun tcp_client [Node 2 IPv6 address] [local port]` with "local port" matching the port previously configured on **Node 2**.
 ```
 > wisun tcp_client fd00:7283:7e00:0:20d:6fff:fe20:b6f9 80
 [Opening: fd00:7283:7e00:0:20d:6fff:fe20:b6f9 (80): 3]
@@ -339,7 +340,7 @@ On **Node 2**, the **Socket ID** is **3**.
 
 On **Node 1**, enter:
 
-`wisun udp_client [Node 2 IPv6 address] [local port]` with "local port" matching the port previously configured on **"Node 2"**.
+`wisun udp_client [Node 2 IPv6 address] [local port]` with "local port" matching the port previously configured on **Node 2**.
 ```
 > wisun udp_client fd00:7283:7e00:0:20d:6fff:fe20:b6f9 90
 [Opened: 3]
