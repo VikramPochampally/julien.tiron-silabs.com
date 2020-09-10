@@ -31,7 +31,7 @@ During this bring-up, we use **3 EFR32xG12 boards** to create a Wi-SUN network:
 - Two boards act as **Wi-SUN nodes/routers**
 
 We refer at the two Wi-SUN nodes as **"Node 1"** and **"Node 2"**.
-![Wi-SUN network](/images/network.png)
+![Wi-SUN network](/images/wisun-network.png)
 
 ### Flash the Border Router and the Router Nodes
 
