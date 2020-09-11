@@ -360,3 +360,9 @@ On **Node 2**, the 12 bytes are successfully received on the socket.
 ```
 > [Data from fd00:7283:7e00:0:20d:6fff:fe20:bd45 (54880): 4,12]
 ```
+
+## Going Further into the Silicon Labs Wi-SUN Stack
+
+### Access RTT traces in the Wi-SUN CLI application
+
+### Export Wi-SUN Traces to Wireshark
