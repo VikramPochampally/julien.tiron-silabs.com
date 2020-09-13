@@ -19,8 +19,8 @@ To access the Wi-SUN FAN stack source code and start development, refer to [**th
 
 ## Content
 
-- **border_router_image**: contains Wi-SUN border router images for different EFR32xG12 radio board references and different Wi-SUN PHYs. (only delivered as a binary image)
-- **wisun_cli_image**: contains Wi-SUN CLI application images for different EFR32xG12 radio board references. It acts as a Wi-SUN router node in a network. (source code available in [**the Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack))
+- **border_router_images**: contains Wi-SUN border router images for different EFR32xG12 radio board references and different Wi-SUN PHYs. (only delivered as a binary image)
+- **wisun_cli_images**: contains Wi-SUN CLI application images for different EFR32xG12 radio board references. It acts as a Wi-SUN router node in a network. (source code available in [**the Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack))
 - **wisun_stack_doc**: contains the Wi-SUN FAN stack Doxygen documentation in HTML format.
 - **images**: contains the readme images
 
@@ -31,6 +31,7 @@ During this bring-up, we use **3 EFR32xG12 boards** to create a Wi-SUN network:
 - Two boards act as **Wi-SUN nodes/routers**
 
 We refer at the two Wi-SUN nodes as **"Node 1"** and **"Node 2"**.
+
 ![Wi-SUN network](/images/wisun-network.png)
 
 ### Flash the Border Router and the Router Nodes
@@ -51,27 +52,35 @@ This creates a *proprietary_wisun_applications* folder containing the necessary 
 - Click **"Restart"**
 - Connect the EFR32xG12 boards to your PC
 
+You can identify and differentiate the boards by using the ID available in the **"Debug Adapters"** panel as well as on the board screen.
+
+![screen ID](/images/screen_id.png)
+
 To Flash the **Wi-SUN border router** with the border router application:
-- In the **"Launcher"** perspective, right-click on the EFR32xG12 acting as border router in the **"Debug Adapter"** panel
+- In the **"Launcher"** perspective, right-click on the EFR32xG12 acting as border router in the **"Debug Adapters"** panel
 - Click on **"Upload application..."**
-- Under **"Application image path"**, browse to the cloned *proprietary_wisun_applications* folder and select your preferred configuration under *border_router_image/EFR32MG12_BRD41xx/EFR32MG12_BRD41xx-wisun-border-router-X-Y-Z.bin*, where:
+- Under **"Application image path"**, browse to the cloned *proprietary_wisun_applications* folder and select your preferred configuration under *border_router_images/EFR32MG12_BRD41xx/EFR32MG12_BRD41xx-wisun-border-router-X-Y-Z.bin*, where:
   - **X** stands for the border router **"regulatory domain"**
   - **Y** stands for the border router **"operating class"**
   - **Z** stands for the border router **"operating mode"**
 
 To choose your preferred configuration, refer to the table below linking **regulatory domain/operating class/operating mode** to the currently **supported Wi-SUN PHYs**.
 
-| Regulatory domain | Operating class | Operating mode | Freq band start (MHz) | Freq band end (MHz) | Region | Bitrate (kbits/s) | Channel spacing (kHz) |
-|-|-|-|-|-|-|-|-|
-| 3 (EU) | 1 | 1a (26) | 863 | 870 | Europe | 50 | 100 |
-| 3 (EU) | 3 | 1a (26) | 870 | 876 | Europe | 50 | 100 |
+| Regulatory domain | Operating class | Operating mode | Freq band start (MHz) | Freq band end (MHz) | Region | Bitrate (kbits/s) | Channel spacing (kHz) | Antenna |
+|-|-|-|-|-|-|-|-|-|
+| 3 (EU) | 1 | 1a (26) | 863 | 870 | Europe | 50 | 100 | Grey |
+| 3 (EU) | 3 | 1a (26) | 870 | 876 | Europe | 50 | 100 | Grey |
+| 5 (IN) | 1 | 1a (26) | 865 | 867 | India | 50 | 100 | Grey |
+| 7 (BZ) | 1 | 1b (27) | 902 | 928 | Brazil | 50 | 200 | Yellow |
+| 1 (NA) | 1 | 1b (27) | 902 | 928 | North America | 50 | 200 | Yellow |
 
+- Make sure you mount the antenna associated the frequency band used on the 3 radio boards
 - Click on **"OK"**
 
 To Flash the **Wi-SUN nodes** with the Wi-SUN CLI application:
-- Right-click on an EFR32xG12 acting as Wi-SUN node in the **"Debug Adapter"** panel
+- Right-click on an EFR32xG12 acting as Wi-SUN node in the **"Debug Adapters"** panel
 - Click on **"Upload application..."**
-- Under **"Application image path"**, browse to the cloned *proprietary_wisun_applications* folder and select the appropriate binary file under *wisun_cli_image/EFR32MG12_BRD41xx_wisun_cli.bin*
+- Under **"Application image path"**, browse to the cloned *proprietary_wisun_applications* folder and select the appropriate binary file under *wisun_cli_images/EFR32MG12_BRD41xx_wisun_cli.bin*
 - Click on **"OK"**
 - Repeat the process for the other EFR32xG12 radio board acting as Wi-SUN node
 
@@ -83,7 +92,7 @@ Additionally, the Wi-SUN CLI application can be built from source as explained i
 - Click on **"Launch Console..."**
 - On the newly opened console, select the **"Serial 1"** panel
 - Make sure the console is connected. Check the icon in the bottom left corner of the console panel. If its status is ![console not connected](/images/console_not_connected.png) then the serial console is yet not connected. Press **"Enter"** in the console, the icon should change its status to ![console connected](/images/console_connected.png).
-- Press the **"RESET"** button on the border router board
+- Press the **"RESET"** button in the bottom right corner of the border router board
 
 If the Wi-SUN border router application has been successfully flashed and the serial connection is established, a similar trace as the one below is output.
 
@@ -188,7 +197,7 @@ If you prefer to use another serial terminal, the UART port settings are **11520
 
 ### Configure the Wi-SUN CLI Nodes
 
-In this section, we use the Wi-SUN CLI interface to configure a Wi-SUN node. This step has to be reproduced on each Wi-SUN node. A first step is to configure the Wi-SUN network name the node tries to connect to.
+In this section, we use the Wi-SUN CLI interface to configure a Wi-SUN node. This step has to be reproduced on each Wi-SUN node. A first step is to configure the Wi-SUN network name.
 - `wisun set wisun.network_name [network name output by the border router]`. The border router network name can be retrieved in the section [**Connect a Console to the Wi-SUN Border Router**](#connect-a-console-to-the-wi-sun-border-router).
 
 For example:
@@ -201,7 +210,7 @@ Depending on the border router binary used in the section above, the Wi-SUN node
 - `wisun set wisun.operating_class [parameter]` should match **Y** in the border router file name (EFR32MG12_BRD41xx-wisun-border-router-X-**Y**-Z.bin)
 - `wisun set wisun.operating_mode [parameter]` should match **the decimal value of Z expressed in hexadecimal in the border router name** (EFR32MG12_BRD41xx-wisun-border-router-X-Y-**Z**.bin). For example:
   - if the border router Z value is '1a', `wisun set wisun.operating_mode 26` should be configured
-  - if the border router Z value is '2a', `wisun set wisun.operating_mode 42` should be configured
+  - if the border router Z value is '1b', `wisun set wisun.operating_mode 27` should be configured
   - ...
 
 You can verify the commands have been taken into account by using the "get" commands below:
@@ -233,7 +242,7 @@ After several hundreds of seconds (100 s to 500 s), a connection notification is
 [IPv6 address: fd00:7283:7e00:0:20d:6fff:fe20:b6f9]
 ```
 
-The node has been successfully added to the Wi-SUN network. Follow this step for each Wi-SUN node you want to add to the network.
+The node IP address is `fd00:7283:7e00:0:20d:6fff:fe20:b6f9`. The node has been successfully added to the Wi-SUN network. Follow this step for each Wi-SUN node you want to add to the network.
 
 ### Ping through the Wi-SUN Network
 
@@ -304,6 +313,14 @@ On the **Node 2** side, a trace is output to confirm the successful socket conne
 > [Socket connection available: 3]
 [Accepted fd00:7283:7e00:0:20d:6fff:fe20:bd45 (63516): 4]
 ```
+At this point, you can use the `wisun socket_list` command to list the available sockets:
+```
+> wisun socket_list
+!  ##  Type        Info
+#   3  TCP client  fd00:7283:7e00:0:20d:6fff:fe20:b6f9 (80) (ACTIVE)
+!
+```
+
 To send data from **Node 1** to **Node 2**, use the command below:
 
 `wisun socket_write [Socket ID] [Message]`
@@ -361,8 +378,43 @@ On **Node 2**, the 12 bytes are successfully received on the socket.
 > [Data from fd00:7283:7e00:0:20d:6fff:fe20:bd45 (54880): 4,12]
 ```
 
+### Send Multicast Packets through the Wi-SUN Network
+
+In addition to send data to unicast addresses, the Wi-SUN socket API can also send data to predefined multicast groups listed below.
+
+```
+ff01::1 All Nodes Address (Interface-Local) (implicit)
+ff02::1 All Nodes Address (Link-Local) (implicit)
+ff03::1 All Nodes Address (Realm-Local)
+ff01::2 All Routers Address (Interface-Local)
+ff02::2 All Routers Address (Link-Local)
+ff03::2 All Routers Address (Realm-Local)
+ff05::2 All Routers Address (Site-Local)
+ff02::1a All RPL Nodes Address (Link-Local) [RFC6550]
+ff02::1:ffxx:xxxx Solicited-Node Address (Link-Local) [RFC4291]
+ff03::fc All MPL Forwarders Address (Realm-Local) [RFC7731]
+```
+
 ## Going Further into the Silicon Labs Wi-SUN Stack
 
 ### Access RTT traces in the Wi-SUN CLI application
 
 ### Export Wi-SUN Traces to Wireshark
+
+Simplicity Studio's Network Analyzer enables debugging of complex wireless systems on the EFR32 family. It can be taken advantage of when running Silicon Labs Wi-SUN FAN stack.
+
+> The Network Analyzer does not yet include a native Wi-SUN protocol analyzer. However, it can be used to export traces to another analyzer like Wireshark
+
+To export Wi-SUN traces with the Network Analyzer to Wireshark, follow the steps described below:
+- Install [**Wireshark**](https://www.wireshark.org/download.html)
+- Right-click on an EFR32xG12 running the Wi-SUN CLI application in the **"Debug Adapter"** panel
+- Click on **"Start capture"**
+- A new **"Live"** window opens. It traces packets sent and received by the Wi-SUN node
+- Once you have traced the communication, click on the export icon ![export icon](/images/export.png)
+- In the **"Select export format:"** list, select the **"PCAP NG exporter"** option
+- Enter a path and a file name where to store the trace in the **"Output file:"** field
+- In the **"Export mode:"** field, select the **"Wi-SUN"** option
+- Click on **"OK"**
+- Open the new file with Wireshark
+
+The file should automatically be analyzed as a Wi-SUN exchange by Wireshark.
