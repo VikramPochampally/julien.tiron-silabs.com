@@ -138,7 +138,7 @@ If the Wi-SUN border router application has been successfully flashed and the se
 [INFO][brro]: Wisun bootstrap ready
 ```
 
-- At this step, **retrieve the Wi-SUN network name and the border router IPv6 address** from the traces. You can also verify that the Wi-SUN regulatory domain, operating class and operating mode match the configuration you want to use. Finally, if you want to export Wi-SUN radio traces, you need the **"GAK"** key and **"key index set"**. More information in the [**Export Wi-SUN Traces to Wireshark**](#export-wi-sun-traces-to-wireshark) section.
+- At this step, **retrieve the Wi-SUN network name and the border router IPv6 address** from the traces. You can also verify that the Wi-SUN regulatory domain, operating class and operating mode match the configuration you want to use. Finally, if you want to export Wi-SUN radio traces to Wireshark, you need the **"GAK"** key and **"key index set"**. More information in the [**Export Wi-SUN Traces to Wireshark**](#export-wi-sun-traces-to-wireshark) section.
 
 In the trace above, the network name is `Wi-SUN Network BD45`, the border router IP address is `fe80::20d:6fff:fe20:bd45`, the GAK key is `23:94:39:06:65:ff:2e:27:5a:16:f0:e1:02:1e:00:b2` and the key index set is `1`.
 
@@ -360,6 +360,8 @@ ff02::1a All RPL Nodes Address (Link-Local) [RFC6550]
 ff02::1:ffxx:xxxx Solicited-Node Address (Link-Local) [RFC4291]
 ff03::fc All MPL Forwarders Address (Realm-Local) [RFC7731]
 ```
+
+All you need to do to send a multicast packet through the network is to have several node in the network listening to a port number and from another node send a packet using one of the addresses above.  
 
 ## Going Further in the Silicon Labs Wi-SUN Stack
 
