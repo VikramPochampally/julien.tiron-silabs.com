@@ -15,14 +15,14 @@
 
 This repository contains resources to evaluate Silicon Labs Wi-SUN FAN stack. It allows a user to flash binary files to EFR32xG12 radio boards and create their first Silicon Labs Wi-SUN network. The document below describes the first possible interactions available through the Wi-SUN CLI application (connect, ping, open a socket...).
 
-To access the Wi-SUN FAN stack source code and start development, refer to [**the dedicated Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack).
+To access the Wi-SUN FAN stack source code and start development, refer to the [**dedicated Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack).
 
 ## Content
 
-- **border_router_images**: contains Wi-SUN border router images for different EFR32xG12 radio board references and different Wi-SUN PHYs. (only delivered as a binary image)
-- **wisun_cli_images**: contains Wi-SUN CLI application images for different EFR32xG12 radio board references. It acts as a Wi-SUN router node in a network. (source code available in [**the Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack))
+- **border_router_images**: contains Wi-SUN border router images for different EFR32xG12 radio board references and different Wi-SUN PHYs (only delivered as a binary image).
+- **wisun_cli_images**: contains Wi-SUN CLI application images for different EFR32xG12 radio board references. It acts as a Wi-SUN router node in a network (source code available in the [**Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack)).
 - **wisun_stack_doc**: contains the Wi-SUN FAN stack Doxygen documentation in HTML format.
-- **images**: contains the readme images
+- **images**: contains the readme images.
 
 ## Start your First Silicon Labs Wi-SUN Network
 
@@ -74,7 +74,7 @@ To choose your preferred configuration, refer to the table below linking **regul
 | 7 (BZ) | 1 | 1b (27) | 902 | 928 | Brazil | 50 | 200 | Yellow |
 | 1 (NA) | 1 | 1b (27) | 902 | 928 | North America | 50 | 200 | Yellow |
 
-- Make sure you mount the antenna associated the frequency band used on the 3 radio boards
+- Make sure you mount the antenna associated with the frequency band used on the 3 radio boards
 - Click on **"OK"**
 
 To Flash the **Wi-SUN nodes** with the Wi-SUN CLI application:
@@ -84,7 +84,7 @@ To Flash the **Wi-SUN nodes** with the Wi-SUN CLI application:
 - Click on **"OK"**
 - Repeat the process for the other EFR32xG12 radio board acting as Wi-SUN node
 
-Additionally, the Wi-SUN CLI application can be built from source as explained in [**the Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack).
+Additionally, the Wi-SUN CLI application can be built from source as explained in the [**Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack).
 
 ### Connect a Console to the Wi-SUN Border Router
 
@@ -97,84 +97,50 @@ Additionally, the Wi-SUN CLI application can be built from source as explained i
 If the Wi-SUN border router application has been successfully flashed and the serial connection is established, a similar trace as the one below is output.
 
 ```
-[INFO][app ]: Build: Sep 10 2020 10:07:34
-
+[INFO][app ]: Build: Sep 15 2020 09:16:34
 [INFO][app ]: Mesh type: MBED_CONF_NSAPI_DEFAULT_MESH_TYPE
-
 [INFO][app ]: Mbed OS version: 5.15.5
-
 [INFO][brro]: NET_IPV6_BOOTSTRAP_AUTONOMOUS
-
 [INFO][app ]: Using NONE backhaul driver...
-
 [INFO][wsbs]: WS tasklet init
-
 [INFO][wspt]: Key timers revocation lifetime: 86400, new activation time: 3600, max mismatch 3840, time to update: 82800
-
 [INFO][brro]: Wi-SUN regulatory domain: 3, operating_class: 1, operating_mode: 26
-
-[INFO][brro]: Wi-SUN network_name: Wi-SUN Network 20FE
-
-[INFO][wsbs]: MAC address: ff:6f:0d:00:45:bd:20:fe
-
-[INFO][addr]: Address added to IF 1: fe80::fd6f:d00:45bd:20fe
-
+[INFO][brro]: Wi-SUN network_name: Wi-SUN Network BD45
+[INFO][wsbs]: MAC address: 00:0d:6f:ff:fe:20:bd:45
+[INFO][addr]: Address added to IF 1: fe80::20d:6fff:fe20:bd45
 [DBG ][rout]:                    fe80::/64  if:1 src:'Static' id:0 lifetime:infinite
-
 [DBG ][rout]:      On-link (met 128)
-
 [DBG ][rout]:                    ff00::/8   if:1 src:'Static' id:0 lifetime:infinite
-
 [DBG ][rout]:      On-link (met 192)
-
 [INFO][brro]: mesh0 bootstrap ongoing..
-
 [INFO][wsbs]: Discovery start
-
 [INFO][wsbs]: Border router start network
-
-[INFO][fhss]: fhss Configuration set, UC channel: 7, BC channel: 4, UC CF: 2, BC CF: 2, channels: BC 69 UC 69, uc dwell: 255, bc dwell: 255, bc interval: 1020, bsi:0
-
+[INFO][fhss]: fhss Configuration set, UC channel: 2, BC channel: 12, UC CF: 2, BC CF: 2, channels: BC 69 UC 69, uc dwell: 255, bc dwell: 255, bc interval: 1020, bsi:0
 [INFO][mlme]: RF config update:
-
 [INFO][mlme]: Frequency(ch0): 863100000Hz
-
 [INFO][mlme]: Channel spacing: 100000Hz
-
 [INFO][mlme]: Datarate: 50000bps
-
 [INFO][mlme]: Number of channels: 69
-
 [INFO][mlme]: Modulation: 4
-
 [INFO][mlme]: Modulation index: 0
-
 [INFO][mcth]: Initialized CCA threshold: 69, -60, -60, -100
-
 [INFO][fhss]: TX slot length: 127ms
-
 [INFO][wspa]: GTK install new index: 0, lifetime: 2592000 system time: 0
-
-[INFO][wspc]: GTK hash set 0a:70:36:4d:0c:29:f8:84 00:00:00:00:00:00:00:00 00:00:00:00:00:00:00:00 00:00:00:00:00:00:00:00
-
-[INFO][wspc]: NW key set: 0, hash: 0a:70:36:4d:0c:29:f8:84
-
+[INFO][wspc]: GTK hash set 29:b6:4a:ff:f1:5a:9f:93 00:00:00:00:00:00:00:00 00:00:00:00:00:00:00:00 00:00:00:00:00:00:00:00
+[INFO][wspc]: NW key set: 0, hash: 29:b6:4a:ff:f1:5a:9f:93
+[INFO][wspc]: NW name: Wi-SUN Network BD45
+[INFO][wspc]: NW name: 57:69:2d:53:55:4e:20:4e:65:74:77:6f:72:6b:20:42:44:34:35
+[INFO][wspc]: GTK: 9f:7b:a5:9d:52:e0:51:7d:88:21:65:b6:36:09:d8:50
+[INFO][wspc]: GAK: 23:94:39:06:65:ff:2e:27:5a:16:f0:e1:02:1e:00:b2
 [INFO][wspc]: NW send key index set: 1
-
 [INFO][wsbs]: operation start
-
 [INFO][wsbs]: Routing ready
-
 [INFO][brro]: Wisun bootstrap ready
-
-[INFO][brro]: RF interface addresses:
-
-[INFO][brro]:  [0] fe80::fd6f:d00:45bd:20fe
 ```
 
-- At this step, **retrieve the Wi-SUN network name and the border router IPv6 address** from the traces. You can also verify that the Wi-SUN regulatory domain, operating class and operating mode match the configuration you want to use.
+- At this step, **retrieve the Wi-SUN network name and the border router IPv6 address** from the traces. You can also verify that the Wi-SUN regulatory domain, operating class and operating mode match the configuration you want to use. Finally, if you want to export Wi-SUN radio traces, you need the **"GAK"** key and **"key index set"**. More information in the [**Export Wi-SUN Traces to Wireshark**](export-wi-sun-traces-to-wireshark) section.
 
-In the trace above, the network name is `Wi-SUN Network 20FE` and the border router IP address is `fe80::fd6f:d00:45bd:20fe`.
+In the trace above, the network name is `Wi-SUN Network BD45`, the border router IP address is `fe80::20d:6fff:fe20:bd45`, the GAK key is `23:94:39:06:65:ff:2e:27:5a:16:f0:e1:02:1e:00:b2` and the key index set is `1`.
 
 If you prefer to use another serial terminal, the UART port settings are **115200 bps, 8 data bits, 1 stop bit and no parity**.
 
@@ -183,7 +149,7 @@ If you prefer to use another serial terminal, the UART port settings are **11520
 - Right-click on an EFR32xG12 acting as Wi-SUN node in the **"Debug Adapter"** panel
 - Click on **"Launch Console..."**
 - On the newly opened console, select the **"Serial 1"** panel
-- Press "Enter"
+- Press **"Enter"**
 
 If the Wi-SUN CLI application has been successfully flashed and the serial connection is established, a chevron is output indicating the CLI is ready to receive a command:
 ```
@@ -395,15 +361,43 @@ ff02::1:ffxx:xxxx Solicited-Node Address (Link-Local) [RFC4291]
 ff03::fc All MPL Forwarders Address (Realm-Local) [RFC7731]
 ```
 
-## Going Further into the Silicon Labs Wi-SUN Stack
+## Going Further in the Silicon Labs Wi-SUN Stack
 
 ### Access RTT traces in the Wi-SUN CLI application
+
+The Wi-SUN CLI application provides a logging mechanism based on the Segger RTT feature to allow a finer tracing capability. To access the Wi-SUN CLI application RTT traces:
+- Install [**J-Link RTT Viewer**](https://www.segger.com/products/debug-probes/j-link/tools/rtt-viewer/)
+- Open JLink RTT Viewer
+- In the **"Configuration"** panel, select **"USB"** in the **"Connection to J-Link"** section
+- In the **"Specify Target Device"** list, select the **"EFR32MG12PXXXF1024"**
+- In the **"Target Interface & Speed"** panel, select **"JTAG"** and **"4000 kHz"**
+- In the **"RTT Control Block"** panel, select **"Auto Detection"**
+- Click on **"OK"**
+- If you have several boards connected, a list appears.
+- Select a board running the Wi-SUN CLI application
+- Click on **"OK"**
+
+A terminal opens and the Wi-SUN CLI application traces are output as shown below.
+
+```
+[DBG ][wisun]: net_init_core: 0
+[DBG ][wisun]: sli_wisun_task_event_handler_id: 2
+[DBG ][SLRF]: sli_wisun_driver_register()
+[DBG ][SLRF]: sli_wisun_driver_register() - driver_id: 0
+[DBG ][SLRF]: rf_address_write: PHY_MAC_64BIT: 00:0d:6f:ff:fe:20:bd:95
+[DBG ][mlme]: SW-MAC driver support rf extension 50000 symbol/seconds  20 us symbol time length
+[DBG ][swm ]: Set MAC mode to IEEE 802.15.4-2011, MTU size: 127
+[DBG ][SLRF]: rf_address_write: PHY_MAC_64BIT: 00:0d:6f:ff:fe:20:bd:95
+[DBG ][wisun]: arm_nwk_interface_lowpan_init: 1
+```
+
+These logs can be used to report an issue to Silicon Labs.
 
 ### Export Wi-SUN Traces to Wireshark
 
 Simplicity Studio's Network Analyzer enables debugging of complex wireless systems on the EFR32 family. It can be taken advantage of when running Silicon Labs Wi-SUN FAN stack.
 
-> The Network Analyzer does not yet include a native Wi-SUN protocol analyzer. However, it can be used to export traces to another analyzer like Wireshark
+> The Network Analyzer does not yet include a native Wi-SUN protocol analyzer. However, it can be used to export traces to another analyzer like Wireshark.
 
 To export Wi-SUN traces with the Network Analyzer to Wireshark, follow the steps described below:
 - Install [**Wireshark**](https://www.wireshark.org/download.html)
@@ -417,4 +411,15 @@ To export Wi-SUN traces with the Network Analyzer to Wireshark, follow the steps
 - Click on **"OK"**
 - Open the new file with Wireshark
 
-The file should automatically be analyzed as a Wi-SUN exchange by Wireshark.
+The file should automatically be analyzed as a Wi-SUN exchange by Wireshark. The communication is initially encrypted thanks to the Wi-SUN encryption protocol. To decrypt the communications, you need the GAK key and key index set information. They can be retrieved during the border router boot as described in the [**Connect a Console to the Wi-SUN Border Router**](connect-a-console-to-the-wi-sun-border-router) section.
+- Click on **"Edit"**
+- Click on **"Preferences..."**
+- Extend the **"Protocols"** list and select **"IEEE 802.15.4**
+- In the **"IEEE 802.15.4 Low-Rate Wireless PAN"** panel, next to **"Decryption Keys"**, click on **"Edit..."**
+- In the **"Keys"** window, click on **"+"**
+- Enter the GAK key in **"Decryption key"** field and the key index set in the **"Decryption key index"**
+- Click on **"OK"**
+
+Wireshark is now able to decrypt the traces and the higher level protocols (ICMP, TCP, UDP...). Below is an example of traces showing a router pinging its border router.
+
+![wireshark](/images/wireshark_traces.png)
