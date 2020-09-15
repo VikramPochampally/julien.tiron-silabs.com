@@ -138,7 +138,7 @@ If the Wi-SUN border router application has been successfully flashed and the se
 [INFO][brro]: Wisun bootstrap ready
 ```
 
-- At this step, **retrieve the Wi-SUN network name and the border router IPv6 address** from the traces. You can also verify that the Wi-SUN regulatory domain, operating class and operating mode match the configuration you want to use. Finally, if you want to export Wi-SUN radio traces, you need the **"GAK"** key and **"key index set"**. More information in the [**Export Wi-SUN Traces to Wireshark**](export-wi-sun-traces-to-wireshark) section.
+- At this step, **retrieve the Wi-SUN network name and the border router IPv6 address** from the traces. You can also verify that the Wi-SUN regulatory domain, operating class and operating mode match the configuration you want to use. Finally, if you want to export Wi-SUN radio traces, you need the **"GAK"** key and **"key index set"**. More information in the [**Export Wi-SUN Traces to Wireshark**](#export-wi-sun-traces-to-wireshark) section.
 
 In the trace above, the network name is `Wi-SUN Network BD45`, the border router IP address is `fe80::20d:6fff:fe20:bd45`, the GAK key is `23:94:39:06:65:ff:2e:27:5a:16:f0:e1:02:1e:00:b2` and the key index set is `1`.
 
@@ -411,7 +411,7 @@ To export Wi-SUN traces with the Network Analyzer to Wireshark, follow the steps
 - Click on **"OK"**
 - Open the new file with Wireshark
 
-The file should automatically be analyzed as a Wi-SUN exchange by Wireshark. The communication is initially encrypted thanks to the Wi-SUN encryption protocol. To decrypt the communications, you need the GAK key and key index set information. They can be retrieved during the border router boot as described in the [**Connect a Console to the Wi-SUN Border Router**](connect-a-console-to-the-wi-sun-border-router) section.
+The file should automatically be analyzed as a Wi-SUN exchange by Wireshark. The communication is initially encrypted thanks to the Wi-SUN encryption protocol. To decrypt the communications, you need the GAK key and key index set information. They can be retrieved during the border router boot as described in the [**Connect a Console to the Wi-SUN Border Router**](#connect-a-console-to-the-wi-sun-border-router) section.
 - Click on **"Edit"**
 - Click on **"Preferences..."**
 - Extend the **"Protocols"** list and select **"IEEE 802.15.4**
