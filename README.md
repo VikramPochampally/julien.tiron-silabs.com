@@ -17,6 +17,8 @@ This repository contains resources to evaluate Silicon Labs Wi-SUN FAN stack. It
 
 To access the Wi-SUN FAN stack source code and start development, refer to the [**dedicated Wi-SUN FAN stack repository**](https://github.com/SiliconLabs/proprietary_wisun_stack).
 
+For Silicon Labs Technical Support, create a ticket on [**Silicon Labs Support Platform**](https://siliconlabs.force.com/s/contactsupport).
+
 ## Content
 
 - **border_router_images**: contains Wi-SUN border router images for different EFR32xG12 radio board references and different Wi-SUN PHYs (only delivered as a binary image).
