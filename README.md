@@ -363,7 +363,7 @@ ff02::1:ffxx:xxxx Solicited-Node Address (Link-Local) [RFC4291]
 ff03::fc All MPL Forwarders Address (Realm-Local) [RFC7731]
 ```
 
-All you need to do to send a multicast packet through the network is to have several node in the network listening to a port number and from another node send a packet using one of the addresses above.  
+All you need to send a multicast packet through the network is to have several nodes listening to a port number and from another node send a packet using one of the addresses above.  
 
 ## Going Further in the Silicon Labs Wi-SUN Stack
 
