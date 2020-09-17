@@ -144,7 +144,7 @@ If the Wi-SUN border router application has been successfully flashed and the se
 
 In the trace above, the network name is `Wi-SUN Network BD45`, the border router IP address is `fe80::20d:6fff:fe20:bd45`, the GAK key is `23:94:39:06:65:ff:2e:27:5a:16:f0:e1:02:1e:00:b2` and the key index set is `1`.
 
-If you prefer to use another serial terminal, the UART port settings are **115200 bps, 8 data bits, 1 stop bit and no parity**.
+If you prefer to use another serial terminal, the UART port settings are **115200 bps, 8 data bits, 1 stop bit, no parity and no RTS/CTS**.
 
 ### Connect a Console to the Wi-SUN CLI Application
 
@@ -161,7 +161,7 @@ If the Wi-SUN CLI application has been successfully flashed and the serial conne
 - Type `wisun get wisun` to list the available Wi-SUN parameters
 - Repeat the process for the other EFR32xG12 radio board acting as Wi-SUN node
 
-If you prefer to use another serial terminal, the UART port settings are **115200 bps, 8 data bits, 1 stop bit and no parity**.
+If you prefer to use another serial terminal, the UART port settings are **115200 bps, 8 data bits, 1 stop bit, no parity and no RTS/CTS**.
 
 ### Configure the Wi-SUN CLI Nodes
 
